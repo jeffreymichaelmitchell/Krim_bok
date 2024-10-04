@@ -2,13 +2,13 @@ fig:nice-fig
 tab:nice-tab
 eq:binom
 thm:tri
-about
-usage
+introduktion
+section
 render-book
 preview-book
-introduktion
-introduktion-1
-cross
+univariat-analysis
+section-1
+bivariat-analys
 chapters-and-sub-chapters
 captioned-figures-and-tables
 parts
@@ -23,5 +23,3 @@ sharing-your-book
 publishing
 pages
 metadata-for-sharing
-univariat-analys
-introduktion-2

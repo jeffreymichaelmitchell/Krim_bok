@@ -1,4 +1,11 @@
-# Cross-references {#cross}
+# Bivariat analys
+
+sen här vi kan visa hur man gör olika bivariat analyser, med visualisering chi sq
+ANOVA osv
+
+Här kommer tutorial material
+
+Cross-references {#cross}
 
 Cross-references make it easier for your readers to find and link to elements in your book.
 

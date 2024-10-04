@@ -17,14 +17,15 @@ github-repo: "rstudio/bookdown-demo"
 
 # Introduktion 
 
-Vällkommen till **Kriminologi A**. Denna kapitel handlar om _univariat analys_ som vi diskuterade i klassrummet.
+Vällkommen till **Kriminologi A**.
+
+Kanske vi börja här med en liten intro till R, vad är en dataframe, hur olika varlabler ser ut i R, vad paketer är, introducera dplyr osv. 
+
+Just nu det alla innehåll fortfatande ser ut som en Bookdown tutorial som man får från R. Men vi kan ändra den lite i taget när vi går. 
 
 This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
 
-## Univariat analys 
-
-Här ska ve prata om olika skal nivåer och hur de olika typer ser ut i data formen.
-
+## 
 
 Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
 
