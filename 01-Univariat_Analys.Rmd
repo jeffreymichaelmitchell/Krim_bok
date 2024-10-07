@@ -1,6 +1,6 @@
 # Univariat analysis
 
-Denna kapitel handlar om _univariat analys_ som vi diskuterade i klassrummet.
+Detta kapitel handlar om _univariat analys_ som vi diskuterade i klassrummet.
 
 Här ska vi prata om olika skal nivåer och hur de olika typer ser ut i data formen. Sen börja med data data behandling och grunläggande visualisering.
 
