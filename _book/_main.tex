@@ -113,12 +113,12 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={01-Set\_up},
+  pdftitle={Metod i kriminologi},
   pdfauthor={Kriminolog grupp vid Umeå universitet},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{01-Set\_up}
+\title{Metod i kriminologi}
 \author{Kriminolog grupp vid Umeå universitet}
 \date{2024-11-17}
 
@@ -545,25 +545,6 @@ Total
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-19-1.pdf}
-
-titanic \%\textgreater\%
-count(Pclass, Sex) \%\textgreater\%
-group\_by(Pclass) \%\textgreater\%
-mutate(prop = n / sum(n)) \%\textgreater\%
-ggplot(aes(x = Pclass, y = prop, fill = Sex)) +
-geom\_col(position = position\_dodge()) +
-geom\_text(aes(label = round(100 * prop)),
-position = position\_dodge(.9), vjust = -.2
-)
-
-titanic \%\textgreater\%
-ggplot(aes(x = Pclass, y = after\_stat(prop), fill = Sex, by = Pclass)) +
-geom\_bar(position = position\_dodge(), stat = ``prop'') +
-geom\_text(aes(label = round(100 * after\_stat(prop))),
-position = position\_dodge(.9), stat = ``prop'', vjust = -.2
-)
-
-Här kommer tutorial material
 
   \bibliography{book.bib,packages.bib}
 

@@ -52,24 +52,3 @@ df %>%
   theme_bw()
 ```
 
-titanic %>%
-  count(Pclass, Sex) %>% 
-  group_by(Pclass) %>%
-  mutate(prop = n / sum(n)) %>%
-  ggplot(aes(x = Pclass, y = prop, fill = Sex)) +
-  geom_col(position = position_dodge()) +
-  geom_text(aes(label = round(100 * prop)),
-            position = position_dodge(.9), vjust = -.2
-  )
-
-titanic %>%
-  ggplot(aes(x = Pclass, y = after_stat(prop), fill = Sex, by = Pclass)) +
-  geom_bar(position = position_dodge(), stat = "prop") +
-  geom_text(aes(label = round(100 * after_stat(prop))),
-    position = position_dodge(.9), stat = "prop", vjust = -.2
-  )
-
-
-
-Här kommer tutorial material
-

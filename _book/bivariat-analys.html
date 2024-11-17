@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 4 Bivariat analys | 01-Set_up</title>
+  <title>Kapitel 4 Bivariat analys | Metod i kriminologi</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
 The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Kapitel 4 Bivariat analys | 01-Set_up" />
+  <meta property="og:title" content="Kapitel 4 Bivariat analys | Metod i kriminologi" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 4 Bivariat analys | 01-Set_up" />
+  <meta name="twitter:title" content="Kapitel 4 Bivariat analys | Metod i kriminologi" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">01-Set_up</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metod i kriminologi</a>
           </h1>
         </div>
 
@@ -294,22 +294,6 @@ Total
 <span id="cb26-10"><a href="bivariat-analys.html#cb26-10" tabindex="-1"></a>  )<span class="sc">+</span></span>
 <span id="cb26-11"><a href="bivariat-analys.html#cb26-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p>titanic %&gt;%
-count(Pclass, Sex) %&gt;%
-group_by(Pclass) %&gt;%
-mutate(prop = n / sum(n)) %&gt;%
-ggplot(aes(x = Pclass, y = prop, fill = Sex)) +
-geom_col(position = position_dodge()) +
-geom_text(aes(label = round(100 * prop)),
-position = position_dodge(.9), vjust = -.2
-)</p>
-<p>titanic %&gt;%
-ggplot(aes(x = Pclass, y = after_stat(prop), fill = Sex, by = Pclass)) +
-geom_bar(position = position_dodge(), stat = “prop”) +
-geom_text(aes(label = round(100 * after_stat(prop))),
-position = position_dodge(.9), stat = “prop”, vjust = -.2
-)</p>
-<p>Här kommer tutorial material</p>
 
 </div>
 </div>
