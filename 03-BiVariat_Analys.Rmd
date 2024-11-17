@@ -1,0 +1,26 @@
+# Bivariat analys
+
+## Krosstabler: Två kategorisk variabler
+
+Precis som alla andra saker i R det finns många olika sätt att skapa kross tabell i R. Här er den enklaste exempel som beräkna bara hur många fall finns det i värj kategori.
+
+```{r}
+table(df$Storstad, df$Radsla_oro)
+```
+
+Men vi kan också ändra den kod att räkna ut procent i värj låda
+```{r}
+prop.table(table(df$Storstad, df$Radsla_oro))
+```
+Och vi kan även räkna ut de så att de ser ut som procent
+
+```{r}
+round(100* prop.table(table(df$Storstad, df$Radsla_oro)))
+
+```
+
+sen här vi kan visa hur man gör olika bivariat analyser, med visualisering chi sq
+ANOVA osv
+
+Här kommer tutorial material
+

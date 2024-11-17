@@ -1,0 +1,122 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Univariat analysis
+
+Detta kapitel handlar om _univariat analys_ som vi diskuterade i klassrummet.
+
+
+Här ska vi prata om olika skal nivåer och hur de olika typer ser ut i data formen. Sen börja med data data behandling och grunläggande visualisering.
+
+## Ladda in data till R
+Först vi behöver ladda in data kopiera och och klistra in data. Kan du ser datafilen i R studio? Om inte se till att du had lagt filen i samma plats som ditt R projekt. När du har gjort den och kan se filen i R studio då du kan trycka den gröna plus tecken högst upp i vänsterhörnet. Kopiera och klistra in den följande kod till dina skript och kör koden.  
+
+```{r}
+library(rio)
+df<-import('NTU 2017-2021.RData')
+
+```
+
+Nu du borde se en ny objekt i enrironment fönstret som heter 'df' som inkludera 375790 observationer och 6 variabler. Om du vill titta på datan du kan trycka på den och en ny fönster ska öppna med datavy.
+
+## Data överblick. 
+
+Här kommer två sätt att får samma information
+
+```{r}
+head(df)
+```
+```{r}
+knitr::kable(
+  head(df, 10), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+## Descriptive statistics
+
+Vi måste alltid kommer ihåg skal nivå av variablerna när vi kör alla slags analysen.
+Även i univariatanalys t.ex. vad btyder det att räkna ut medelvärdet av en dikatom variabel som 'storstad'? 
+
+```{r}
+library(psych)
+knitr::kable(describe(df))
+```
+
+
+
+
+## Visualisering
+
+```{r}
+#Här är en plot av variabeln 'Brottsoffer_hot'.  
+library(tidyverse)
+df %>% drop_na() %>% #Det har ta bort alla NA annars det får sin egen kolumn
+  ggplot()+ geom_bar(aes(x=Brottsoffer_hot))+theme_bw()
+```
+
+```{r}
+#Här är en plot av variabeln 'Radsla_oro'.  
+
+df %>% drop_na() %>% #Det har ta bort alla NA annars det får sin egen kolumn
+  ggplot()+ geom_bar(aes(x=Radsla_oro))+theme_bw()
+```
+
+```{r}
+#Här är en plot av variabeln 'Radsla_beteende'.  
+
+df %>% drop_na() %>% #Det har ta bort alla NA annars det får sin egen kolumn
+  ggplot()+ geom_bar(aes(x=Radsla_beteende))+theme_bw()
+```
+
+De tre variablerna var alla dikotomiserad i.e. de variera bara mellan
+två kategorier. Men vi kan också skapa en 'index' av många variabler 
+
+I denna fall vi har skapat ett additivt index (en sammanslagning av fem frågor) som mäter om respondenten har stort eller litet förtroende för rättsväsendet. Kontinuerlig: 0 (lågt förtroende) till 20 (högt förtroende)
+(Ingenåsikt/vetinte=bortfall)
+
+Vi kan se de beskrivande statistiker för bara denna variabel om vi lägga till
+variabelns namn efter datasetets namn och en '$' tecken
+
+```{r}
+
+knitr::kable(describe(df$Fortroende_index, skew = FALSE))
+```
+
+```{r}
+#Här är en plot av variabeln 'Fortroende_index'.  
+
+df %>% drop_na() %>% #Det har ta bort alla NA annars det får sin egen kolumn
+  ggplot()+ geom_bar(aes(x=Fortroende_index))+theme_bw()
+```
+
+Sen vi kan även ladda upp en till data set om vi vill. Lada ner den 'shootings'
+excel fil från canvas och spara den i samma map som du har R projektet. När du har gjort den det borde dycker upp i fönstret igen. Sen kör denna kod att ladda in data till R och nämna den
+'shootings'
+
+```{r}
+shootings<- import('shootings.csv')
+#Sen kolla hur det ser ut
+head(shootings)
+```
+
+```{r}
+
+knitr::kable(describe(shootings$shootings_rate, skew = FALSE))
+```
+
+```{r}
+shootings %>% drop_na() %>% 
+  ggplot(aes(shootings_rate))+ geom_histogram(binwidth= .75)+
+   theme_bw()
+```
+
+Vi kan också skapa en boxplot av variabeln 
+
+```{r}
+shootings %>% drop_na() %>% 
+  ggplot(aes(x= shootings_rate))+ geom_boxplot()+ coord_flip()+ theme_bw()
+
+```
