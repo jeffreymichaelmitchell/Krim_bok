@@ -21,12 +21,11 @@ Efter du har laddat ner båda öppen R studio gå till 'file' och trycka på 'ny
 
 När man först installera R eller när man uppdatera R man behöver installera paketen (packages) som vi använder att hjälpa bearbata visualisera samt analysera data. Att installera dessa packater kopiera och klistra in den följande kod och trycka 'enter'. Det finns hur många som helst paketen i R som byggdes upp att göra många olika saker. I allmänhet om du vill göra någonting i R förmodligen det finns en packet för det. 
 
-```{r}
+
 install.packages('tidyverse')
 install.packages('rio')
 install.packages('knitr')
 install.packages('psych')
 
-```
 
-Mer instruktioner komme
+

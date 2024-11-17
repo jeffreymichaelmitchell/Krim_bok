@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 4 Bivariat analys | Metod i kriminologi</title>
+  <title>Kapitel 4 Bivariat analys | 01-Set_up</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
 The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Kapitel 4 Bivariat analys | Metod i kriminologi" />
+  <meta property="og:title" content="Kapitel 4 Bivariat analys | 01-Set_up" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 4 Bivariat analys | Metod i kriminologi" />
+  <meta name="twitter:title" content="Kapitel 4 Bivariat analys | 01-Set_up" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metod i kriminologi</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">01-Set_up</a>
           </h1>
         </div>
 
@@ -188,25 +188,127 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="krosstabler-två-kategorisk-variabler" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Krosstabler: Två kategorisk variabler<a href="bivariat-analys.html#krosstabler-två-kategorisk-variabler" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Precis som alla andra saker i R det finns många olika sätt att skapa kross tabell i R. Här er den enklaste exempel som beräkna bara hur många fall finns det i värj kategori.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="bivariat-analys.html#cb1-1" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>Storstad, df<span class="sc">$</span>Radsla_oro)</span></code></pre></div>
-<pre><code>##                
-##                 Inte orolig Orolig
-##   Inte storstad      140012 119997
-##   Storstad            60760  45354</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="bivariat-analys.html#cb19-1" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>Radsla_oro, df<span class="sc">$</span>Storstad)</span></code></pre></div>
+<pre><code>##              
+##               Inte storstad Storstad
+##   Inte orolig        140012    60760
+##   Orolig             119997    45354</code></pre>
 <p>Men vi kan också ändra den kod att räkna ut procent i värj låda</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="bivariat-analys.html#cb3-1" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>Storstad, df<span class="sc">$</span>Radsla_oro))</span></code></pre></div>
-<pre><code>##                
-##                 Inte orolig    Orolig
-##   Inte storstad   0.3824179 0.3277505
-##   Storstad        0.1659552 0.1238764</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="bivariat-analys.html#cb21-1" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>Radsla_oro, df<span class="sc">$</span>Storstad),<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##              
+##               Inte storstad  Storstad
+##   Inte orolig     0.5384891 0.5725917
+##   Orolig          0.4615109 0.4274083</code></pre>
 <p>Och vi kan även räkna ut de så att de ser ut som procent</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="bivariat-analys.html#cb5-1" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>Storstad, df<span class="sc">$</span>Radsla_oro)))</span></code></pre></div>
-<pre><code>##                
-##                 Inte orolig Orolig
-##   Inte storstad          38     33
-##   Storstad               17     12</code></pre>
-<p>sen här vi kan visa hur man gör olika bivariat analyser, med visualisering chi sq
-ANOVA osv</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="bivariat-analys.html#cb23-1" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>Radsla_oro, df<span class="sc">$</span>Storstad),<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##              
+##               Inte storstad Storstad
+##   Inte orolig            54       57
+##   Orolig                 46       43</code></pre>
+<p>Men vi kan också använder en packet i R som heter sjPlot att visa alla information
+i samma plats samt kör X2 prov.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="bivariat-analys.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb25-2"><a href="bivariat-analys.html#cb25-2" tabindex="-1"></a><span class="fu">tab_xtab</span>(</span>
+<span id="cb25-3"><a href="bivariat-analys.html#cb25-3" tabindex="-1"></a>  <span class="at">var.row =</span> df<span class="sc">$</span>Radsla_oro,</span>
+<span id="cb25-4"><a href="bivariat-analys.html#cb25-4" tabindex="-1"></a>  <span class="at">var.col =</span> df<span class="sc">$</span>Storstad,</span>
+<span id="cb25-5"><a href="bivariat-analys.html#cb25-5" tabindex="-1"></a>  <span class="at">show.summary =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-6"><a href="bivariat-analys.html#cb25-6" tabindex="-1"></a>  <span class="at">show.col.prc =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-7"><a href="bivariat-analys.html#cb25-7" tabindex="-1"></a>  <span class="at">use.viewer =</span> <span class="cn">TRUE</span></span>
+<span id="cb25-8"><a href="bivariat-analys.html#cb25-8" tabindex="-1"></a>)</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
+Radsla_oro
+</th>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">
+Storstad
+</th>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">
+Total
+</th>
+</tr>
+<tr>
+<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
+Inte storstad
+</td>
+<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
+Storstad
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
+Inte orolig
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">140012</span><br><span style="color:#339933;">53.8 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">60760</span><br><span style="color:#339933;">57.3 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+<span style="color:black;">200772</span><br><span style="color:#339933;">54.8 %</span>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
+Orolig
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">119997</span><br><span style="color:#339933;">46.2 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">45354</span><br><span style="color:#339933;">42.7 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+<span style="color:black;">165351</span><br><span style="color:#339933;">45.2 %</span>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;">
+Total
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">260009</span><br><span style="color:#339933;">100 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">106114</span><br><span style="color:#339933;">100 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">366123</span><br><span style="color:#339933;">100 %</span>
+</td>
+</tr>
+<td style="text-align:right; font-size:0.9em; font-style:italic; padding:0.2cm;" colspan="4">
+χ<sup>2</sup>=353.742 · df=1 · &amp;phi=0.031 · p=0.000
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bivariat-analys.html#cb26-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="bivariat-analys.html#cb26-2" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="bivariat-analys.html#cb26-3" tabindex="-1"></a>  <span class="fu">count</span>(Storstad, Radsla_oro) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-4"><a href="bivariat-analys.html#cb26-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Storstad) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="bivariat-analys.html#cb26-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="bivariat-analys.html#cb26-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Storstad, <span class="at">y =</span> prop, <span class="at">fill =</span> Radsla_oro)) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="bivariat-analys.html#cb26-7" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="bivariat-analys.html#cb26-8" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> prop)),</span>
+<span id="cb26-9"><a href="bivariat-analys.html#cb26-9" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(.<span class="dv">9</span>), <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">2</span></span>
+<span id="cb26-10"><a href="bivariat-analys.html#cb26-10" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb26-11"><a href="bivariat-analys.html#cb26-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>titanic %&gt;%
+count(Pclass, Sex) %&gt;%
+group_by(Pclass) %&gt;%
+mutate(prop = n / sum(n)) %&gt;%
+ggplot(aes(x = Pclass, y = prop, fill = Sex)) +
+geom_col(position = position_dodge()) +
+geom_text(aes(label = round(100 * prop)),
+position = position_dodge(.9), vjust = -.2
+)</p>
+<p>titanic %&gt;%
+ggplot(aes(x = Pclass, y = after_stat(prop), fill = Sex, by = Pclass)) +
+geom_bar(position = position_dodge(), stat = “prop”) +
+geom_text(aes(label = round(100 * after_stat(prop))),
+position = position_dodge(.9), stat = “prop”, vjust = -.2
+)</p>
 <p>Här kommer tutorial material</p>
 
 </div>

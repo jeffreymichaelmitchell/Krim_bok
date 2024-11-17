@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 3 Univariat analysis | Metod i kriminologi</title>
+  <title>Kapitel 3 Univariat analysis | 01-Set_up</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
 The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Kapitel 3 Univariat analysis | Metod i kriminologi" />
+  <meta property="og:title" content="Kapitel 3 Univariat analysis | 01-Set_up" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 3 Univariat analysis | Metod i kriminologi" />
+  <meta name="twitter:title" content="Kapitel 3 Univariat analysis | 01-Set_up" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metod i kriminologi</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">01-Set_up</a>
           </h1>
         </div>
 
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-3"><a href="univariat-analysis.html#cb5-3" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
 <span id="cb5-4"><a href="univariat-analysis.html#cb5-4" tabindex="-1"></a>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-3">Table 3.1: </span>Here is a nice table!</caption>
+<caption><span id="tab:unnamed-chunk-4">Table 3.1: </span>Here is a nice table!</caption>
 <colgroup>
 <col width="7%" />
 <col width="15%" />
@@ -480,17 +480,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="univariat-analysis.html#cb9-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="co">#Det har ta bort alla NA annars det får sin egen kolumn</span></span>
 <span id="cb9-2"><a href="univariat-analysis.html#cb9-2" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>Brottsoffer_hot))<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="univariat-analysis.html#cb10-1" tabindex="-1"></a><span class="co">#Här är en plot av variabeln &#39;Radsla_oro&#39;.  </span></span>
 <span id="cb10-2"><a href="univariat-analysis.html#cb10-2" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="univariat-analysis.html#cb10-3" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="co">#Det har ta bort alla NA annars det får sin egen kolumn</span></span>
 <span id="cb10-4"><a href="univariat-analysis.html#cb10-4" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>Radsla_oro))<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="univariat-analysis.html#cb11-1" tabindex="-1"></a><span class="co">#Här är en plot av variabeln &#39;Radsla_beteende&#39;.  </span></span>
 <span id="cb11-2"><a href="univariat-analysis.html#cb11-2" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="univariat-analysis.html#cb11-3" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="co">#Det har ta bort alla NA annars det får sin egen kolumn</span></span>
 <span id="cb11-4"><a href="univariat-analysis.html#cb11-4" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>Radsla_beteende))<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>De tre variablerna var alla dikotomiserad i.e. de variera bara mellan
 två kategorier. Men vi kan också skapa en ‘index’ av många variabler</p>
 <p>I denna fall vi har skapat ett additivt index (en sammanslagning av fem frågor) som mäter om respondenten har stort eller litet förtroende för rättsväsendet. Kontinuerlig: 0 (lågt förtroende) till 20 (högt förtroende)
@@ -544,7 +544,7 @@ variabelns namn efter datasetets namn och en ‘$’ tecken</p>
 <span id="cb13-2"><a href="univariat-analysis.html#cb13-2" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="univariat-analysis.html#cb13-3" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="co">#Det har ta bort alla NA annars det får sin egen kolumn</span></span>
 <span id="cb13-4"><a href="univariat-analysis.html#cb13-4" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>Fortroende_index))<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Sen vi kan även ladda upp en till data set om vi vill. Lada ner den ‘shootings’
 excel fil från canvas och spara den i samma map som du har R projektet. När du har gjort den det borde dycker upp i fönstret igen. Sen kör denna kod att ladda in data till R och nämna den
 ‘shootings’</p>
@@ -611,11 +611,11 @@ excel fil från canvas och spara den i samma map som du har R projektet. När du
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="univariat-analysis.html#cb17-1" tabindex="-1"></a>shootings <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="univariat-analysis.html#cb17-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(shootings_rate))<span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span> .<span class="dv">75</span>)<span class="sc">+</span></span>
 <span id="cb17-3"><a href="univariat-analysis.html#cb17-3" tabindex="-1"></a>   <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Vi kan också skapa en boxplot av variabeln</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="univariat-analysis.html#cb18-1" tabindex="-1"></a>shootings <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb18-2"><a href="univariat-analysis.html#cb18-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> shootings_rate))<span class="sc">+</span> <span class="fu">geom_boxplot</span>()<span class="sc">+</span> <span class="fu">coord_flip</span>()<span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 
 </div>
 </div>
