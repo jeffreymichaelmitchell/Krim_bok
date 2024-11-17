@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Bivariat analys
 
 ## Krosstabler: Två kategorisk variabler
@@ -5,22 +10,66 @@
 Precis som alla andra saker i R det finns många olika sätt att skapa kross tabell i R. Här er den enklaste exempel som beräkna bara hur många fall finns det i värj kategori.
 
 ```{r}
-table(df$Storstad, df$Radsla_oro)
+table(df$Radsla_oro, df$Storstad)
 ```
 
 Men vi kan också ändra den kod att räkna ut procent i värj låda
 ```{r}
-prop.table(table(df$Storstad, df$Radsla_oro))
+prop.table(table(df$Radsla_oro, df$Storstad),2)
 ```
 Och vi kan även räkna ut de så att de ser ut som procent
 
 ```{r}
-round(100* prop.table(table(df$Storstad, df$Radsla_oro)))
+round(100* prop.table(table(df$Radsla_oro, df$Storstad),2))
+
+```
+Men vi kan också använder en packet i R som heter sjPlot att visa alla information
+i samma plats samt kör X2 prov.
+
+```{r}
+library(sjPlot)
+tab_xtab(
+  var.row = df$Radsla_oro,
+  var.col = df$Storstad,
+  show.summary = TRUE,
+  show.col.prc = TRUE,
+  use.viewer = TRUE
+)
 
 ```
 
-sen här vi kan visa hur man gör olika bivariat analyser, med visualisering chi sq
-ANOVA osv
+```{r}
+df %>%
+  drop_na() %>% 
+  count(Storstad, Radsla_oro) %>% 
+  group_by(Storstad) %>%
+  mutate(prop = n / sum(n), na.rm=TRUE) %>%
+  ggplot(aes(x = Storstad, y = prop, fill = Radsla_oro)) +
+  geom_col(position = position_dodge()) +
+  geom_text(aes(label = round(100 * prop)),
+            position = position_dodge(.9), vjust = -.2
+  )+
+  theme_bw()
+```
+
+titanic %>%
+  count(Pclass, Sex) %>% 
+  group_by(Pclass) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = Pclass, y = prop, fill = Sex)) +
+  geom_col(position = position_dodge()) +
+  geom_text(aes(label = round(100 * prop)),
+            position = position_dodge(.9), vjust = -.2
+  )
+
+titanic %>%
+  ggplot(aes(x = Pclass, y = after_stat(prop), fill = Sex, by = Pclass)) +
+  geom_bar(position = position_dodge(), stat = "prop") +
+  geom_text(aes(label = round(100 * after_stat(prop))),
+    position = position_dodge(.9), stat = "prop", vjust = -.2
+  )
+
+
 
 Här kommer tutorial material
 

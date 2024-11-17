@@ -79,21 +79,24 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Kriminologi vid Umeå universitet</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a></li>
-<li class="chapter" data-level="2" data-path="set-up.html"><a href="set-up.html"><i class="fa fa-check"></i><b>2</b> Set up</a></li>
+<li class="chapter" data-level="2" data-path="set-up.html"><a href="set-up.html"><i class="fa fa-check"></i><b>2</b> Set up</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="set-up.html"><a href="set-up.html#packages"><i class="fa fa-check"></i><b>2.1</b> Packages</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="univariat-analysis.html"><a href="univariat-analysis.html"><i class="fa fa-check"></i><b>3</b> Univariat analysis</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="univariat-analysis.html"><a href="univariat-analysis.html#ladda-in-data-till-r"><i class="fa fa-check"></i><b>3.1</b> Ladda in data till R</a></li>
 <li class="chapter" data-level="3.2" data-path="univariat-analysis.html"><a href="univariat-analysis.html#data-överblick."><i class="fa fa-check"></i><b>3.2</b> Data överblick.</a></li>
-<li class="chapter" data-level="3.3" data-path="univariat-analysis.html"><a href="univariat-analysis.html#visualisering"><i class="fa fa-check"></i><b>3.3</b> Visualisering</a></li>
+<li class="chapter" data-level="3.3" data-path="univariat-analysis.html"><a href="univariat-analysis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.3</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="3.4" data-path="univariat-analysis.html"><a href="univariat-analysis.html#visualisering"><i class="fa fa-check"></i><b>3.4</b> Visualisering</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="bivariat-analys.html"><a href="bivariat-analys.html"><i class="fa fa-check"></i><b>4</b> Bivariat analys</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="bivariat-analys.html"><a href="bivariat-analys.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>4.1</b> Chapters and sub-chapters</a></li>
-<li class="chapter" data-level="4.2" data-path="bivariat-analys.html"><a href="bivariat-analys.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>4.2</b> Captioned figures and tables</a></li>
+<li class="chapter" data-level="4.1" data-path="bivariat-analys.html"><a href="bivariat-analys.html#krosstabler-två-kategorisk-variabler"><i class="fa fa-check"></i><b>4.1</b> Krosstabler: Två kategorisk variabler</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -124,6 +127,9 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
 <div id="introduktion" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Kapitel 1</span> Introduktion<a href="index.html#introduktion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Vällkommen till <strong>Kriminologi A</strong>.</p>
+<p>Vi bygger upp innehållet i den här boken över tid och uppdaterar den allt eftersom för att ge den bästa möjliga introduktionen till kvantitativa metoder inom kriminologi som vi kan. Vi har börjat använda R (jämfört med andra som SPSS, STATA eller Jamovi) i dessa kriminologikurser av flera anledningar.
+För det första tror vi att R är mer mångsidigt, vilket gör det möjligt för studenter att lära sig att använda olika statistiska verktyg som finns tillgängliga i andra program, samtidigt som de har möjlighet att tillåta andra typer av analyser som är relevanta för kriminologi (till exempel rumsliga analyser eller nätverksanalyser) som inte är tillgängliga i andra program. För det andra används R i större utsträckning inom både akademisk forskning och andra yrkesområden av intresse för studenter som studerar kriminologi, t.ex. arbete i lokala och nationella myndigheter. För det tredje är R gratis och open access, vilket innebär att det inte kommer att kosta dem pengar i framtiden att ge studenterna en introduktion till detta verktyg. För det fjärde tror vi att det finns pedagogiska fördelar som studenter får när de tvingas tänka på data och analyser med kod istället för peka-och-klicka-program. Ett exempel på detta är att kommandoraden för en linjär regressionsmodell i R är mycket lik den faktiska formeln, vilket innebär att eleverna är mer benägna att komma ihåg varje komponent i formeln tillsammans med deras betydelse.
+Den tänkta användningen av denna bok är att paras ihop med kriminologikurserna vid Umeå universitet och de exempel vi använder är från föreläsningarna och workshopparna i den kursen. Där det är möjligt försöker vi tillhandahålla textinformation för att förklara begreppen och hur de tillämpas i R-miljön utan att boken blir för “texttung”.</p>
 
 </div>
             </section>
