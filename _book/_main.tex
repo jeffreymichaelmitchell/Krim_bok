@@ -137,8 +137,7 @@ Vi bygger upp innehållet i den här boken över tid och uppdaterar den allt eft
 
 \chapter{Set up}\label{set-up}
 
-Här kommer instruktioner till studenter om hur att uplägga
-R. Följa länken och ladda när R sen ladda när Rstudio. Se till att du ladda när versionen som passar ditt dator (windows aller mac).
+Här kommer instruktioner till studenter om hur att uplägga R. Följa länken och ladda när R sen ladda när Rstudio. Se till att du ladda när versionen som passar ditt dator (windows aller mac).
 
 \url{https://posit.co/download/rstudio-desktop/}
 
@@ -148,20 +147,25 @@ Efter du har laddat ner båda öppen R studio gå till `file' och trycka på `ny
 
 När man först installera R eller när man uppdatera R man behöver installera paketen (packages) som vi använder att hjälpa bearbata visualisera samt analysera data. Att installera dessa packater kopiera och klistra in den följande kod och trycka `enter'. Det finns hur många som helst paketen i R som byggdes upp att göra många olika saker. I allmänhet om du vill göra någonting i R förmodligen det finns en packet för det.
 
-install.packages(`tidyverse')
-install.packages(`rio')
-install.packages(`knitr')
-install.packages(`psych')
+``tidyverse'', ``rio'', ``ggmap'',``knitr'',``psych'',``emmeans'',
+``sjPlot''
 
 \chapter{Univariat analysis}\label{univariat-analysis}
 
-Detta kapitel handlar om \emph{univariat analys} som vi diskuterade i klassrummet.
+Detta kapitel handlar om \emph{univariat analys} som vi diskuterade i
+klassrummet.
 
-Här ska vi prata om olika skal nivåer och hur de olika typer ser ut i data formen. Sen börja med data data behandling och grunläggande visualisering.
+Här ska vi prata om olika skal nivåer och hur de olika typer ser ut i
+data formen. Sen börja med data data behandling och grunläggande
+visualisering.
 
 \section{Ladda in data till R}\label{ladda-in-data-till-r}
 
-Först vi behöver ladda in data kopiera och och klistra in data. Kan du ser datafilen i R studio? Om inte se till att du had lagt filen i samma plats som ditt R projekt. När du har gjort den och kan se filen i R studio då du kan trycka den gröna plus tecken högst upp i vänsterhörnet. Kopiera och klistra in den följande kod till dina skript och kör koden.
+Först vi behöver ladda in data kopiera och och klistra in data. Kan du
+ser datafilen i R studio? Om inte se till att du had lagt filen i samma
+plats som ditt R projekt. När du har gjort den och kan se filen i R
+studio då du kan trycka den gröna plus tecken högst upp i vänsterhörnet.
+Kopiera och klistra in den följande kod till dina skript och kör koden.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -174,7 +178,9 @@ Först vi behöver ladda in data kopiera och och klistra in data. Kan du ser dat
 ## Warning: Missing `trust` will be set to FALSE by default for RData in 2.0.0.
 \end{verbatim}
 
-Nu du borde se en ny objekt i enrironment fönstret som heter `df' som inkludera 375790 observationer och 6 variabler. Om du vill titta på datan du kan trycka på den och en ny fönster ska öppna med datavy.
+Nu du borde se en ny objekt i enrironment fönstret som heter `df' som
+inkludera 375790 observationer och 6 variabler. Om du vill titta på
+datan du kan trycka på den och en ny fönster ska öppna med datavy.
 
 \section{Data överblick.}\label{data-uxf6verblick.}
 
@@ -237,8 +243,9 @@ alder\_4 & Brottsoffer\_hot & Fortroende\_index & Radsla\_oro & Radsla\_beteende
 
 \section{Descriptive statistics}\label{descriptive-statistics}
 
-Vi måste alltid kommer ihåg skal nivå av variablerna när vi kör alla slags analysen.
-Även i univariatanalys t.ex. vad btyder det att räkna ut medelvärdet av en dikatom variabel som `storstad'?
+Vi måste alltid kommer ihåg skal nivå av variablerna när vi kör alla
+slags analysen. Även i univariatanalys t.ex. vad btyder det att räkna ut
+medelvärdet av en dikatom variabel som `storstad'?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -323,11 +330,13 @@ Storstad* & 6 & 375590 & 1.289012 & 0.4533041 & 1 & 1.236265 & 0.0000 & 1 & 2 & 
 De tre variablerna var alla dikotomiserad i.e.~de variera bara mellan
 två kategorier. Men vi kan också skapa en `index' av många variabler
 
-I denna fall vi har skapat ett additivt index (en sammanslagning av fem frågor) som mäter om respondenten har stort eller litet förtroende för rättsväsendet. Kontinuerlig: 0 (lågt förtroende) till 20 (högt förtroende)
-(Ingenåsikt/vetinte=bortfall)
+I denna fall vi har skapat ett additivt index (en sammanslagning av fem
+frågor) som mäter om respondenten har stort eller litet förtroende för
+rättsväsendet. Kontinuerlig: 0 (lågt förtroende) till 20 (högt
+förtroende) (Ingenåsikt/vetinte=bortfall)
 
-Vi kan se de beskrivande statistiker för bara denna variabel om vi lägga till
-variabelns namn efter datasetets namn och en `\$' tecken
+Vi kan se de beskrivande statistiker för bara denna variabel om vi lägga
+till variabelns namn efter datasetets namn och en `\$' tecken
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -354,9 +363,10 @@ X1 & 1 & 269696 & 11.4088 & 4.505039 & 12 & 0 & 20 & 20 & 0.0086748\\
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-10-1.pdf}
 
-Sen vi kan även ladda upp en till data set om vi vill. Lada ner den `shootings'
-excel fil från canvas och spara den i samma map som du har R projektet. När du har gjort den det borde dycker upp i fönstret igen. Sen kör denna kod att ladda in data till R och nämna den
-`shootings'
+Sen vi kan även ladda upp en till data set om vi vill. Lada ner den
+`shootings' excel fil från canvas och spara den i samma map som du har R
+projektet. När du har gjort den det borde dycker upp i fönstret igen.
+Sen kör denna kod att ladda in data till R och nämna den `shootings'
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -533,6 +543,15 @@ Men vi kan också använder en packet i R som heter sjPlot att visa alla informa
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(sjPlot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'sjPlot' was built under R version 4.4.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{tab\_xtab}\NormalTok{(}
   \AttributeTok{var.row =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Radsla\_oro,}
   \AttributeTok{var.col =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Storstad,}
@@ -598,6 +617,225 @@ Men då vi kan också skapa en figur av skillnader andel de som är orolig baser
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\section{Korrelationer: Två kontinuerlig variabel}\label{korrelationer-tvuxe5-kontinuerlig-variabel}
+
+Bara två variabler från datasetet:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shootings }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(shootings\_rate, education\_average) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#Första välja variablerna att inkludera i korrelationsanalys}
+  \FunctionTok{tab\_corr}\NormalTok{(}\AttributeTok{corr.method=}\StringTok{\textquotesingle{}pearson\textquotesingle{}}\NormalTok{, }\AttributeTok{triangle =} \StringTok{\textquotesingle{}lower\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+~
+
+shootings\_rate
+
+education\_average
+
+shootings\_rate
+
+~
+
+~
+
+education\_average
+
+0.381**
+
+~
+
+Computed correlation used pearson-method with listwise-deletion.
+
+Sen vi kan kolla på hur alla fyra variabler korrelera med vandra:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shootings }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(shootings\_rate, education\_average, trust\_police\_average, income\_average) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#Första välja variablerna att inkludera i korrelationsanalys}
+  \FunctionTok{tab\_corr}\NormalTok{(}\AttributeTok{corr.method=}\StringTok{\textquotesingle{}pearson\textquotesingle{}}\NormalTok{, }\AttributeTok{triangle =} \StringTok{\textquotesingle{}lower\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+~
+
+shootings\_rate
+
+education\_average
+
+trust\_police\_average
+
+income\_average
+
+shootings\_rate
+
+~
+
+~
+
+~
+
+~
+
+education\_average
+
+0.381**
+
+~
+
+~
+
+~
+
+trust\_police\_average
+
+-0.151{}
+
+-0.066{}
+
+~
+
+~
+
+income\_average
+
+0.562***
+
+0.565***
+
+-0.184{}
+
+~
+
+Computed correlation used pearson-method with listwise-deletion.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shootings }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(shootings\_rate, education\_average, trust\_police\_average, income\_average) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#Första välja variablerna att inkludera i korrelationsanalys}
+  \FunctionTok{sjp.corr}\NormalTok{(}\AttributeTok{corr.method =} \StringTok{\textquotesingle{}pearson\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in sjp.corr(., corr.method = "pearson"): 'sjp.corr' is deprecated.
+## Please use 'correlation::correlation()' and its related plot()-method.
+\end{verbatim}
+
+\begin{verbatim}
+## Computing correlation using pearson-method with listwise-deletion...
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 10 rows containing missing values or values outside the scale range
+## (`geom_text()`).
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+Sen vi kan visualisera sambandet tillsammans med iakttog punkterna med ggplot. Första vi kan bygga en skatterplot av sambandet
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shootings }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(education\_average, shootings\_rate))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-25-1.pdf}
+Sen vi kan lägga till en regressions linje
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shootings }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(education\_average, shootings\_rate))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\section{Jämförelsen av medelvärdet: Kontinuerlig beroende varaibel och kategorisk oberoends variabel}\label{juxe4mfuxf6relsen-av-medelvuxe4rdet-kontinuerlig-beroende-varaibel-och-kategorisk-oberoends-variabel}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aov}\OtherTok{\textless{}{-}}\FunctionTok{aov}\NormalTok{(shootings\_rate}\SpecialCharTok{\textasciitilde{}}\NormalTok{ year, }\AttributeTok{data=}\NormalTok{shootings)}
+\FunctionTok{summary}\NormalTok{(aov)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## year         1   2.97   2.965    0.82  0.369
+## Residuals   61 220.51   3.615
+\end{verbatim}
+
+Sen vi får medelvärdena och konfidensintervaller men ememans packetet
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(emmeans)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'emmeans' was built under R version 4.4.2
+\end{verbatim}
+
+\begin{verbatim}
+## Welcome to emmeans.
+## Caution: You lose important information if you filter this package's results.
+## See '? untidy'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{emmeans}\NormalTok{(aov, }\AttributeTok{spec =} \StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  year emmean   SE df lower.CL upper.CL
+##  2019   2.56 0.24 61     2.08     3.04
+## 
+## Confidence level used: 0.95
+\end{verbatim}
+
+Sen vi kan visualisera sambandet mellan skottfrekvens och år.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{shootings }\SpecialCharTok{\%\textgreater{}\%} 
+ \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(year, shootings\_rate))}\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{position=}\FunctionTok{position\_jitter}\NormalTok{(.}\DecValTok{05}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun.data =}\NormalTok{ mean\_cl\_normal, }\AttributeTok{geom =} \StringTok{"errorbar"}\NormalTok{, }
+        \AttributeTok{width =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{position=}\FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{x =} \FloatTok{0.15}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun.y =}\NormalTok{ mean, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{,}
+        \AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{position=}\FunctionTok{position\_nudge}\NormalTok{(}\AttributeTok{x =} \FloatTok{0.15}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: The `fun.y` argument of `stat_summary()` is deprecated as of ggplot2 3.3.0.
+## i Please use the `fun` argument instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-29-1.pdf}
 
   \bibliography{book.bib,packages.bib}
 
