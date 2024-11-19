@@ -161,6 +161,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="bivariat-analys.html"><a href="bivariat-analys.html"><i class="fa fa-check"></i><b>4</b> Bivariat analys</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="bivariat-analys.html"><a href="bivariat-analys.html#krosstabler-två-kategorisk-variabler"><i class="fa fa-check"></i><b>4.1</b> Krosstabler: Två kategorisk variabler</a></li>
+<li class="chapter" data-level="4.2" data-path="bivariat-analys.html"><a href="bivariat-analys.html#korrelationer-två-kontinuerlig-variabel"><i class="fa fa-check"></i><b>4.2</b> Korrelationer: Två kontinuerlig variabel</a></li>
+<li class="chapter" data-level="4.3" data-path="bivariat-analys.html"><a href="bivariat-analys.html#jämförelsen-av-medelvärdet-kontinuerlig-beroende-varaibel-och-kategorisk-oberoends-variabel"><i class="fa fa-check"></i><b>4.3</b> Jämförelsen av medelvärdet: Kontinuerlig beroende varaibel och kategorisk oberoends variabel</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -205,16 +207,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##               Inte storstad Storstad
 ##   Inte orolig            54       57
 ##   Orolig                 46       43</code></pre>
-<p>Men vi kan också använder en packet i R som heter sjPlot att visa alla information
-i samma plats samt kör X2 prov.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="bivariat-analys.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb25-2"><a href="bivariat-analys.html#cb25-2" tabindex="-1"></a><span class="fu">tab_xtab</span>(</span>
-<span id="cb25-3"><a href="bivariat-analys.html#cb25-3" tabindex="-1"></a>  <span class="at">var.row =</span> df<span class="sc">$</span>Radsla_oro,</span>
-<span id="cb25-4"><a href="bivariat-analys.html#cb25-4" tabindex="-1"></a>  <span class="at">var.col =</span> df<span class="sc">$</span>Storstad,</span>
-<span id="cb25-5"><a href="bivariat-analys.html#cb25-5" tabindex="-1"></a>  <span class="at">show.summary =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb25-6"><a href="bivariat-analys.html#cb25-6" tabindex="-1"></a>  <span class="at">show.col.prc =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb25-7"><a href="bivariat-analys.html#cb25-7" tabindex="-1"></a>  <span class="at">use.viewer =</span> <span class="cn">TRUE</span></span>
-<span id="cb25-8"><a href="bivariat-analys.html#cb25-8" tabindex="-1"></a>)</span></code></pre></div>
+<p>Men nu att räkna ut <span class="math inline">\(\chi {2}\)</span> vi behöver först räkna ut föväntade värderna om de fanns ingen skillnad mellan grupperna. Formel att räckna ut varje cell i en tabell är <span class="math inline">\({e}= \frac{radtotal \ast koltotal}{total}\)</span> sen från tabellen övanför det skulle ser ut så här</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="bivariat-analys.html#cb25-1" tabindex="-1"></a>(<span class="dv">200772</span><span class="sc">*</span><span class="dv">260009</span>)<span class="sc">/</span><span class="dv">366123</span></span></code></pre></div>
+<pre><code>## [1] 142581.9</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="bivariat-analys.html#cb27-1" tabindex="-1"></a>(<span class="dv">200772</span><span class="sc">*</span><span class="dv">106114</span>)<span class="sc">/</span><span class="dv">366123</span></span></code></pre></div>
+<pre><code>## [1] 58190.06</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="bivariat-analys.html#cb29-1" tabindex="-1"></a>(<span class="dv">165351</span><span class="sc">*</span><span class="dv">260009</span>)<span class="sc">/</span><span class="dv">366123</span></span></code></pre></div>
+<pre><code>## [1] 117427.1</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="bivariat-analys.html#cb31-1" tabindex="-1"></a>(<span class="dv">165351</span><span class="sc">*</span><span class="dv">106114</span>)<span class="sc">/</span><span class="dv">366123</span></span></code></pre></div>
+<pre><code>## [1] 47923.94</code></pre>
+<p>Sen med förväntade värderna vi kan får <span class="math inline">\(\chi {2}\)</span> genom formeln<br />
+<span class="math inline">\(\chi ^{2}=\sum \frac{(O-E)^2}{E}\)</span></p>
+<p>Och vi kan använder R att räcnka ut <span class="math inline">\(\chi {2}\)</span> för oss så här:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="bivariat-analys.html#cb33-1" tabindex="-1"></a><span class="fu">chisq.test</span>(df<span class="sc">$</span>Storstad, df<span class="sc">$</span>Radsla_oro)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  df$Storstad and df$Radsla_oro
+## X-squared = 353.74, df = 1, p-value &lt; 2.2e-16</code></pre>
+<p>Men vi kan också använder en packet i R som heter sjPlot att visa alla information i samma plats samt kör <span class="math inline">\(\chi {2}\)</span> prov.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="bivariat-analys.html#cb35-1" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span></code></pre></div>
+<pre><code>## Warning: package &#39;sjPlot&#39; was built under R version 4.4.2</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="bivariat-analys.html#cb37-1" tabindex="-1"></a><span class="fu">tab_xtab</span>(</span>
+<span id="cb37-2"><a href="bivariat-analys.html#cb37-2" tabindex="-1"></a>  <span class="at">var.row =</span> df<span class="sc">$</span>Radsla_oro,</span>
+<span id="cb37-3"><a href="bivariat-analys.html#cb37-3" tabindex="-1"></a>  <span class="at">var.col =</span> df<span class="sc">$</span>Storstad,</span>
+<span id="cb37-4"><a href="bivariat-analys.html#cb37-4" tabindex="-1"></a>  <span class="at">show.summary =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb37-5"><a href="bivariat-analys.html#cb37-5" tabindex="-1"></a>  <span class="at">show.col.prc =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb37-6"><a href="bivariat-analys.html#cb37-6" tabindex="-1"></a>  <span class="at">use.viewer =</span> <span class="cn">TRUE</span></span>
+<span id="cb37-7"><a href="bivariat-analys.html#cb37-7" tabindex="-1"></a>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
@@ -282,18 +302,219 @@ Total
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bivariat-analys.html#cb26-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="bivariat-analys.html#cb26-2" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb26-3"><a href="bivariat-analys.html#cb26-3" tabindex="-1"></a>  <span class="fu">count</span>(Storstad, Radsla_oro) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-4"><a href="bivariat-analys.html#cb26-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Storstad) <span class="sc">%&gt;%</span></span>
-<span id="cb26-5"><a href="bivariat-analys.html#cb26-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-6"><a href="bivariat-analys.html#cb26-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Storstad, <span class="at">y =</span> prop, <span class="at">fill =</span> Radsla_oro)) <span class="sc">+</span></span>
-<span id="cb26-7"><a href="bivariat-analys.html#cb26-7" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
-<span id="cb26-8"><a href="bivariat-analys.html#cb26-8" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> prop)),</span>
-<span id="cb26-9"><a href="bivariat-analys.html#cb26-9" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(.<span class="dv">9</span>), <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">2</span></span>
-<span id="cb26-10"><a href="bivariat-analys.html#cb26-10" tabindex="-1"></a>  )<span class="sc">+</span></span>
-<span id="cb26-11"><a href="bivariat-analys.html#cb26-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Men då vi kan också skapa en figur av skillnader andel de som är orolig baserad på stads storlek.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="bivariat-analys.html#cb38-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="bivariat-analys.html#cb38-2" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="bivariat-analys.html#cb38-3" tabindex="-1"></a>  <span class="fu">count</span>(Storstad, Radsla_oro) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-4"><a href="bivariat-analys.html#cb38-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Storstad) <span class="sc">%&gt;%</span></span>
+<span id="cb38-5"><a href="bivariat-analys.html#cb38-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-6"><a href="bivariat-analys.html#cb38-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Storstad, <span class="at">y =</span> prop, <span class="at">fill =</span> Radsla_oro)) <span class="sc">+</span></span>
+<span id="cb38-7"><a href="bivariat-analys.html#cb38-7" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb38-8"><a href="bivariat-analys.html#cb38-8" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> prop)),</span>
+<span id="cb38-9"><a href="bivariat-analys.html#cb38-9" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(.<span class="dv">9</span>), <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">2</span></span>
+<span id="cb38-10"><a href="bivariat-analys.html#cb38-10" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb38-11"><a href="bivariat-analys.html#cb38-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="korrelationer-två-kontinuerlig-variabel" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Korrelationer: Två kontinuerlig variabel<a href="bivariat-analys.html#korrelationer-två-kontinuerlig-variabel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Bara två variabler från datasetet:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="bivariat-analys.html#cb39-1" tabindex="-1"></a>shootings <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="bivariat-analys.html#cb39-2" tabindex="-1"></a>  <span class="fu">select</span>(shootings_rate, education_average) <span class="sc">%&gt;%</span> <span class="co">#Första välja variablerna att inkludera i korrelationsanalys</span></span>
+<span id="cb39-3"><a href="bivariat-analys.html#cb39-3" tabindex="-1"></a>  <span class="fu">tab_corr</span>(<span class="at">corr.method=</span><span class="st">&#39;pearson&#39;</span>, <span class="at">triangle =</span> <span class="st">&#39;lower&#39;</span>)</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+ 
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+shootings_rate
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+education_average
+</th>
+</tr>
+<tr>
+<td style="font-style:italic;">
+shootings_rate
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+education_average
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.381<span style="vertical-align:super;font-size:0.8em;">**</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">
+Computed correlation used pearson-method with listwise-deletion.
+</td>
+</tr>
+</table>
+<p>Sen vi kan kolla på hur alla fyra variabler korrelera med vandra:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="bivariat-analys.html#cb40-1" tabindex="-1"></a>shootings <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="bivariat-analys.html#cb40-2" tabindex="-1"></a>  <span class="fu">select</span>(shootings_rate, education_average, trust_police_average, income_average) <span class="sc">%&gt;%</span> <span class="co">#Första välja variablerna att inkludera i korrelationsanalys</span></span>
+<span id="cb40-3"><a href="bivariat-analys.html#cb40-3" tabindex="-1"></a>  <span class="fu">tab_corr</span>(<span class="at">corr.method=</span><span class="st">&#39;pearson&#39;</span>, <span class="at">triangle =</span> <span class="st">&#39;lower&#39;</span>)</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+ 
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+shootings_rate
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+education_average
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+trust_police_average
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+income_average
+</th>
+</tr>
+<tr>
+<td style="font-style:italic;">
+shootings_rate
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+education_average
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.381<span style="vertical-align:super;font-size:0.8em;">**</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+trust_police_average
+</td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">
+-0.151<span style="vertical-align:super;font-size:0.8em;"></span>
+</td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">
+-0.066<span style="vertical-align:super;font-size:0.8em;"></span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+income_average
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.562<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.565<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">
+-0.184<span style="vertical-align:super;font-size:0.8em;"></span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">
+Computed correlation used pearson-method with listwise-deletion.
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="bivariat-analys.html#cb41-1" tabindex="-1"></a>shootings <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="bivariat-analys.html#cb41-2" tabindex="-1"></a>  <span class="fu">select</span>(shootings_rate, education_average, trust_police_average, income_average) <span class="sc">%&gt;%</span> <span class="co">#Första välja variablerna att inkludera i korrelationsanalys</span></span>
+<span id="cb41-3"><a href="bivariat-analys.html#cb41-3" tabindex="-1"></a>  <span class="fu">sjp.corr</span>(<span class="at">corr.method =</span> <span class="st">&#39;pearson&#39;</span>)</span></code></pre></div>
+<pre><code>## Warning in sjp.corr(., corr.method = &quot;pearson&quot;): &#39;sjp.corr&#39; is deprecated.
+## Please use &#39;correlation::correlation()&#39; and its related plot()-method.</code></pre>
+<pre><code>## Computing correlation using pearson-method with listwise-deletion...</code></pre>
+<pre><code>## Warning: Removed 10 rows containing missing values or values outside the scale range
+## (`geom_text()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Sen vi kan visualisera sambandet tillsammans med iakttog punkterna med ggplot. Första vi kan bygga en skatterplot av sambandet</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="bivariat-analys.html#cb45-1" tabindex="-1"></a>shootings <span class="sc">%&gt;%</span> </span>
+<span id="cb45-2"><a href="bivariat-analys.html#cb45-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(education_average, shootings_rate))<span class="sc">+</span></span>
+<span id="cb45-3"><a href="bivariat-analys.html#cb45-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb45-4"><a href="bivariat-analys.html#cb45-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+Sen vi kan lägga till en regressions linje</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="bivariat-analys.html#cb46-1" tabindex="-1"></a>shootings <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="bivariat-analys.html#cb46-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(education_average, shootings_rate))<span class="sc">+</span></span>
+<span id="cb46-3"><a href="bivariat-analys.html#cb46-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb46-4"><a href="bivariat-analys.html#cb46-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">&#39;lm&#39;</span>)<span class="sc">+</span></span>
+<span id="cb46-5"><a href="bivariat-analys.html#cb46-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+<div id="jämförelsen-av-medelvärdet-kontinuerlig-beroende-varaibel-och-kategorisk-oberoends-variabel" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Jämförelsen av medelvärdet: Kontinuerlig beroende varaibel och kategorisk oberoends variabel<a href="bivariat-analys.html#jämförelsen-av-medelvärdet-kontinuerlig-beroende-varaibel-och-kategorisk-oberoends-variabel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="bivariat-analys.html#cb48-1" tabindex="-1"></a>aov<span class="ot">&lt;-</span><span class="fu">aov</span>(shootings_rate<span class="sc">~</span> year, <span class="at">data=</span>shootings)</span>
+<span id="cb48-2"><a href="bivariat-analys.html#cb48-2" tabindex="-1"></a><span class="fu">summary</span>(aov)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## year         1   2.97   2.965    0.82  0.369
+## Residuals   61 220.51   3.615</code></pre>
+<p>Sen vi får medelvärdena och konfidensintervaller men ememans packetet</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="bivariat-analys.html#cb50-1" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div>
+<pre><code>## Warning: package &#39;emmeans&#39; was built under R version 4.4.2</code></pre>
+<pre><code>## Welcome to emmeans.
+## Caution: You lose important information if you filter this package&#39;s results.
+## See &#39;? untidy&#39;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="bivariat-analys.html#cb53-1" tabindex="-1"></a><span class="fu">emmeans</span>(aov, <span class="at">spec =</span> <span class="st">&#39;year&#39;</span>)</span></code></pre></div>
+<pre><code>##  year emmean   SE df lower.CL upper.CL
+##  2019   2.56 0.24 61     2.08     3.04
+## 
+## Confidence level used: 0.95</code></pre>
+<p>Sen vi kan visualisera sambandet mellan skottfrekvens och år.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="bivariat-analys.html#cb55-1" tabindex="-1"></a>shootings <span class="sc">%&gt;%</span> </span>
+<span id="cb55-2"><a href="bivariat-analys.html#cb55-2" tabindex="-1"></a> <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, shootings_rate))<span class="sc">+</span></span>
+<span id="cb55-3"><a href="bivariat-analys.html#cb55-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">position=</span><span class="fu">position_jitter</span>(.<span class="dv">05</span>))<span class="sc">+</span></span>
+<span id="cb55-4"><a href="bivariat-analys.html#cb55-4" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_normal, <span class="at">geom =</span> <span class="st">&quot;errorbar&quot;</span>, </span>
+<span id="cb55-5"><a href="bivariat-analys.html#cb55-5" tabindex="-1"></a>        <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position=</span><span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.15</span>)) <span class="sc">+</span></span>
+<span id="cb55-6"><a href="bivariat-analys.html#cb55-6" tabindex="-1"></a>    <span class="fu">stat_summary</span>(<span class="at">fun.y =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,</span>
+<span id="cb55-7"><a href="bivariat-analys.html#cb55-7" tabindex="-1"></a>        <span class="at">size =</span> <span class="dv">3</span>, <span class="at">position=</span><span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.15</span>))<span class="sc">+</span></span>
+<span id="cb55-8"><a href="bivariat-analys.html#cb55-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<pre><code>## Warning: The `fun.y` argument of `stat_summary()` is deprecated as of ggplot2 3.3.0.
+## ℹ Please use the `fun` argument instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -357,6 +578,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

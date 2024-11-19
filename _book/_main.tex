@@ -138,7 +138,7 @@ Vi bygger upp innehållet i den här boken över tid och uppdaterar den allt eft
 \chapter{Set up}\label{set-up}
 
 Här kommer instruktioner till studenter om hur att uplägga
-R. Föjla länken och ladda när R sen ladda när Rstudio. Se till att du ladda när versionen som passar ditt dator (windows aller mac).
+R. Följa länken och ladda när R sen ladda när Rstudio. Se till att du ladda när versionen som passar ditt dator (windows aller mac).
 
 \url{https://posit.co/download/rstudio-desktop/}
 
@@ -467,21 +467,72 @@ Och vi kan även räkna ut de så att de ser ut som procent
 ##   Orolig                 46       43
 \end{verbatim}
 
-Men vi kan också använder en packet i R som heter sjPlot att visa alla information
-i samma plats samt kör X2 prov.
+Men nu att räkna ut \(\chi {2}\) vi behöver först räkna ut föväntade värderna om de fanns ingen skillnad mellan grupperna. Formel att räckna ut varje cell i en tabell är \({e}= \frac{radtotal \ast koltotal}{total}\) sen från tabellen övanför det skulle ser ut så här
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(sjPlot)}
+\NormalTok{(}\DecValTok{200772}\SpecialCharTok{*}\DecValTok{260009}\NormalTok{)}\SpecialCharTok{/}\DecValTok{366123}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Learn more about sjPlot with 'browseVignettes("sjPlot")'.
+## [1] 142581.9
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{(}\DecValTok{200772}\SpecialCharTok{*}\DecValTok{106114}\NormalTok{)}\SpecialCharTok{/}\DecValTok{366123}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 58190.06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{165351}\SpecialCharTok{*}\DecValTok{260009}\NormalTok{)}\SpecialCharTok{/}\DecValTok{366123}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 117427.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{165351}\SpecialCharTok{*}\DecValTok{106114}\NormalTok{)}\SpecialCharTok{/}\DecValTok{366123}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 47923.94
+\end{verbatim}
+
+Sen med förväntade värderna vi kan får \(\chi {2}\) genom formeln\\
+\(\chi ^{2}=\sum \frac{(O-E)^2}{E}\)
+
+Och vi kan använder R att räcnka ut \(\chi {2}\) för oss så här:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{Storstad, df}\SpecialCharTok{$}\NormalTok{Radsla\_oro)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  df$Storstad and df$Radsla_oro
+## X-squared = 353.74, df = 1, p-value < 2.2e-16
+\end{verbatim}
+
+Men vi kan också använder en packet i R som heter sjPlot att visa alla information i samma plats samt kör \(\chi {2}\) prov.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(sjPlot)}
 \FunctionTok{tab\_xtab}\NormalTok{(}
   \AttributeTok{var.row =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Radsla\_oro,}
   \AttributeTok{var.col =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Storstad,}
@@ -528,6 +579,8 @@ Total
 
 χ2=353.742 · df=1 · \&phi=0.031 · p=0.000
 
+Men då vi kan också skapa en figur av skillnader andel de som är orolig baserad på stads storlek.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df }\SpecialCharTok{\%\textgreater{}\%}
@@ -544,7 +597,7 @@ Total
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-21-1.pdf}
 
   \bibliography{book.bib,packages.bib}
 

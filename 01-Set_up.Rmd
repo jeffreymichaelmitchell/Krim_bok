@@ -10,22 +10,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Set up
 
-Här kommer instruktioner till studenter om hur att uplägga 
-R. Föjla länken och ladda när R sen ladda när Rstudio. Se till att du ladda när versionen som passar ditt dator (windows aller mac).
+Här kommer instruktioner till studenter om hur att uplägga R. Följa länken och ladda när R sen ladda när Rstudio. Se till att du ladda när versionen som passar ditt dator (windows aller mac).
 
-https://posit.co/download/rstudio-desktop/ 
+<https://posit.co/download/rstudio-desktop/>
 
-Efter du har laddat ner båda öppen R studio gå till 'file' och trycka på 'ny projekt'. 
+Efter du har laddat ner båda öppen R studio gå till 'file' och trycka på 'ny projekt'.
 
 ## Packages
 
-När man först installera R eller när man uppdatera R man behöver installera paketen (packages) som vi använder att hjälpa bearbata visualisera samt analysera data. Att installera dessa packater kopiera och klistra in den följande kod och trycka 'enter'. Det finns hur många som helst paketen i R som byggdes upp att göra många olika saker. I allmänhet om du vill göra någonting i R förmodligen det finns en packet för det. 
+När man först installera R eller när man uppdatera R man behöver installera paketen (packages) som vi använder att hjälpa bearbata visualisera samt analysera data. Att installera dessa packater kopiera och klistra in den följande kod och trycka 'enter'. Det finns hur många som helst paketen i R som byggdes upp att göra många olika saker. I allmänhet om du vill göra någonting i R förmodligen det finns en packet för det.
 
 
-install.packages('tidyverse')
-install.packages('rio')
-install.packages('knitr')
-install.packages('psych')
+"tidyverse", "rio", "ggmap","knitr","psych","emmeans",
+"sjPlot"
+
 
 
 

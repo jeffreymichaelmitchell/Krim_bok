@@ -161,6 +161,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="bivariat-analys.html"><a href="bivariat-analys.html"><i class="fa fa-check"></i><b>4</b> Bivariat analys</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="bivariat-analys.html"><a href="bivariat-analys.html#krosstabler-två-kategorisk-variabler"><i class="fa fa-check"></i><b>4.1</b> Krosstabler: Två kategorisk variabler</a></li>
+<li class="chapter" data-level="4.2" data-path="bivariat-analys.html"><a href="bivariat-analys.html#korrelationer-två-kontinuerlig-variabel"><i class="fa fa-check"></i><b>4.2</b> Korrelationer: Två kontinuerlig variabel</a></li>
+<li class="chapter" data-level="4.3" data-path="bivariat-analys.html"><a href="bivariat-analys.html#jämförelsen-av-medelvärdet-kontinuerlig-beroende-varaibel-och-kategorisk-oberoends-variabel"><i class="fa fa-check"></i><b>4.3</b> Jämförelsen av medelvärdet: Kontinuerlig beroende varaibel och kategorisk oberoends variabel</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -185,15 +187,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="univariat-analysis" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Kapitel 3</span> Univariat analysis<a href="univariat-analysis.html#univariat-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Detta kapitel handlar om <em>univariat analys</em> som vi diskuterade i klassrummet.</p>
-<p>Här ska vi prata om olika skal nivåer och hur de olika typer ser ut i data formen. Sen börja med data data behandling och grunläggande visualisering.</p>
+<p>Detta kapitel handlar om <em>univariat analys</em> som vi diskuterade i
+klassrummet.</p>
+<p>Här ska vi prata om olika skal nivåer och hur de olika typer ser ut i
+data formen. Sen börja med data data behandling och grunläggande
+visualisering.</p>
 <div id="ladda-in-data-till-r" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Ladda in data till R<a href="univariat-analysis.html#ladda-in-data-till-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Först vi behöver ladda in data kopiera och och klistra in data. Kan du ser datafilen i R studio? Om inte se till att du had lagt filen i samma plats som ditt R projekt. När du har gjort den och kan se filen i R studio då du kan trycka den gröna plus tecken högst upp i vänsterhörnet. Kopiera och klistra in den följande kod till dina skript och kör koden.</p>
+<p>Först vi behöver ladda in data kopiera och och klistra in data. Kan du
+ser datafilen i R studio? Om inte se till att du had lagt filen i samma
+plats som ditt R projekt. När du har gjort den och kan se filen i R
+studio då du kan trycka den gröna plus tecken högst upp i vänsterhörnet.
+Kopiera och klistra in den följande kod till dina skript och kör koden.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="univariat-analysis.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
 <span id="cb1-2"><a href="univariat-analysis.html#cb1-2" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">import</span>(<span class="st">&#39;NTU 2017-2021.RData&#39;</span>)</span></code></pre></div>
 <pre><code>## Warning: Missing `trust` will be set to FALSE by default for RData in 2.0.0.</code></pre>
-<p>Nu du borde se en ny objekt i enrironment fönstret som heter ‘df’ som inkludera 375790 observationer och 6 variabler. Om du vill titta på datan du kan trycka på den och en ny fönster ska öppna med datavy.</p>
+<p>Nu du borde se en ny objekt i enrironment fönstret som heter ‘df’ som
+inkludera 375790 observationer och 6 variabler. Om du vill titta på
+datan du kan trycka på den och en ny fönster ska öppna med datavy.</p>
 </div>
 <div id="data-överblick." class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Data överblick.<a href="univariat-analysis.html#data-överblick." class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -323,8 +334,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="descriptive-statistics" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Descriptive statistics<a href="univariat-analysis.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Vi måste alltid kommer ihåg skal nivå av variablerna när vi kör alla slags analysen.
-Även i univariatanalys t.ex. vad btyder det att räkna ut medelvärdet av en dikatom variabel som ‘storstad’?</p>
+<p>Vi måste alltid kommer ihåg skal nivå av variablerna när vi kör alla
+slags analysen. Även i univariatanalys t.ex. vad btyder det att räkna ut
+medelvärdet av en dikatom variabel som ‘storstad’?</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="univariat-analysis.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
 <span id="cb6-2"><a href="univariat-analysis.html#cb6-2" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">describe</span>(df))</span></code></pre></div>
 <table style="width:100%;">
@@ -466,13 +478,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.4</span> Visualisering<a href="univariat-analysis.html#visualisering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="univariat-analysis.html#cb7-1" tabindex="-1"></a><span class="co">#Här är en plot av variabeln &#39;Brottsoffer_hot&#39;.  </span></span>
 <span id="cb7-2"><a href="univariat-analysis.html#cb7-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+<pre><code>## ── Attaching core tidyverse packages ───────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ## ✔ purrr     1.0.2     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ ggplot2::%+%()   masks psych::%+%()
 ## ✖ ggplot2::alpha() masks psych::alpha()
 ## ✖ dplyr::filter()  masks stats::filter()
@@ -493,10 +505,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>De tre variablerna var alla dikotomiserad i.e. de variera bara mellan
 två kategorier. Men vi kan också skapa en ‘index’ av många variabler</p>
-<p>I denna fall vi har skapat ett additivt index (en sammanslagning av fem frågor) som mäter om respondenten har stort eller litet förtroende för rättsväsendet. Kontinuerlig: 0 (lågt förtroende) till 20 (högt förtroende)
-(Ingenåsikt/vetinte=bortfall)</p>
-<p>Vi kan se de beskrivande statistiker för bara denna variabel om vi lägga till
-variabelns namn efter datasetets namn och en ‘$’ tecken</p>
+<p>I denna fall vi har skapat ett additivt index (en sammanslagning av fem
+frågor) som mäter om respondenten har stort eller litet förtroende för
+rättsväsendet. Kontinuerlig: 0 (lågt förtroende) till 20 (högt
+förtroende) (Ingenåsikt/vetinte=bortfall)</p>
+<p>Vi kan se de beskrivande statistiker för bara denna variabel om vi lägga
+till variabelns namn efter datasetets namn och en ‘$’ tecken</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="univariat-analysis.html#cb12-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">describe</span>(df<span class="sc">$</span>Fortroende_index, <span class="at">skew =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 <table>
 <colgroup>
@@ -545,9 +559,10 @@ variabelns namn efter datasetets namn och en ‘$’ tecken</p>
 <span id="cb13-3"><a href="univariat-analysis.html#cb13-3" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="co">#Det har ta bort alla NA annars det får sin egen kolumn</span></span>
 <span id="cb13-4"><a href="univariat-analysis.html#cb13-4" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>Fortroende_index))<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Sen vi kan även ladda upp en till data set om vi vill. Lada ner den ‘shootings’
-excel fil från canvas och spara den i samma map som du har R projektet. När du har gjort den det borde dycker upp i fönstret igen. Sen kör denna kod att ladda in data till R och nämna den
-‘shootings’</p>
+<p>Sen vi kan även ladda upp en till data set om vi vill. Lada ner den
+‘shootings’ excel fil från canvas och spara den i samma map som du har R
+projektet. När du har gjort den det borde dycker upp i fönstret igen.
+Sen kör denna kod att ladda in data till R och nämna den ‘shootings’</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="univariat-analysis.html#cb14-1" tabindex="-1"></a>shootings<span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">&#39;shootings.csv&#39;</span>)</span>
 <span id="cb14-2"><a href="univariat-analysis.html#cb14-2" tabindex="-1"></a><span class="co">#Sen kolla hur det ser ut</span></span>
 <span id="cb14-3"><a href="univariat-analysis.html#cb14-3" tabindex="-1"></a><span class="fu">head</span>(shootings)</span></code></pre></div>
@@ -679,6 +694,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

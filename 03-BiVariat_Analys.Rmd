@@ -3,6 +3,7 @@ output:
   pdf_document: default
   html_document: default
 ---
+
 # Bivariat analys
 
 ## Krosstabler: Två kategorisk variabler
@@ -14,17 +15,37 @@ table(df$Radsla_oro, df$Storstad)
 ```
 
 Men vi kan också ändra den kod att räkna ut procent i värj låda
+
 ```{r}
 prop.table(table(df$Radsla_oro, df$Storstad),2)
 ```
+
 Och vi kan även räkna ut de så att de ser ut som procent
 
 ```{r}
 round(100* prop.table(table(df$Radsla_oro, df$Storstad),2))
 
 ```
-Men vi kan också använder en packet i R som heter sjPlot att visa alla information
-i samma plats samt kör X2 prov.
+
+Men nu att räkna ut $\chi {2}$ vi behöver först räkna ut föväntade värderna om de fanns ingen skillnad mellan grupperna. Formel att räckna ut varje cell i en tabell är ${e}= \frac{radtotal \ast koltotal}{total}$ sen från tabellen övanför det skulle ser ut så här
+
+```{r}
+(200772*260009)/366123
+(200772*106114)/366123
+(165351*260009)/366123
+(165351*106114)/366123
+```
+
+Sen med förväntade värderna vi kan får $\chi {2}$ genom formeln\
+$\chi ^{2}=\sum \frac{(O-E)^2}{E}$
+
+Och vi kan använder R att räcnka ut $\chi {2}$ för oss så här:
+
+```{r}
+chisq.test(df$Storstad, df$Radsla_oro)
+```
+
+Men vi kan också använder en packet i R som heter sjPlot att visa alla information i samma plats samt kör $\chi {2}$ prov.
 
 ```{r}
 library(sjPlot)
@@ -37,6 +58,8 @@ tab_xtab(
 )
 
 ```
+
+Men då vi kan också skapa en figur av skillnader andel de som är orolig baserad på stads storlek.
 
 ```{r}
 df %>%
@@ -52,3 +75,72 @@ df %>%
   theme_bw()
 ```
 
+## Korrelationer: Två kontinuerlig variabel
+
+Bara två variabler från datasetet:
+
+```{r}
+shootings %>% 
+  select(shootings_rate, education_average) %>% #Första välja variablerna att inkludera i korrelationsanalys
+  tab_corr(corr.method='pearson', triangle = 'lower')
+```
+
+Sen vi kan kolla på hur alla fyra variabler korrelera med vandra:
+
+```{r}
+shootings %>% 
+  select(shootings_rate, education_average, trust_police_average, income_average) %>% #Första välja variablerna att inkludera i korrelationsanalys
+  tab_corr(corr.method='pearson', triangle = 'lower')
+```
+
+```{r}
+shootings %>% 
+  select(shootings_rate, education_average, trust_police_average, income_average) %>% #Första välja variablerna att inkludera i korrelationsanalys
+  sjp.corr(corr.method = 'pearson')
+```
+
+Sen vi kan visualisera sambandet tillsammans med iakttog punkterna med ggplot. Första vi kan bygga en skatterplot av sambandet
+
+```{r}
+shootings %>% 
+  ggplot(aes(education_average, shootings_rate))+
+  geom_point()+
+  theme_bw()
+```
+Sen vi kan lägga till en regressions linje
+
+```{r}
+shootings %>% 
+  ggplot(aes(education_average, shootings_rate))+
+  geom_point()+
+  geom_smooth(method= 'lm')+
+  theme_bw()
+```
+
+## Jämförelsen av medelvärdet: Kontinuerlig beroende varaibel och kategorisk oberoends variabel
+
+```{r}
+aov<-aov(shootings_rate~ year, data=shootings)
+summary(aov)
+```
+
+Sen vi får medelvärdena och konfidensintervaller men ememans packetet
+
+```{r}
+library(emmeans)
+emmeans(aov, spec = 'year')
+```
+Sen vi kan visualisera sambandet mellan skottfrekvens och år.
+
+
+```{r}
+shootings %>% 
+ ggplot(aes(year, shootings_rate))+
+  geom_jitter(position=position_jitter(.05))+
+  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", 
+        width = 0.1, position=position_nudge(x = 0.15)) +
+    stat_summary(fun.y = mean, geom = "point",
+        size = 3, position=position_nudge(x = 0.15))+
+  theme_bw()
+
+```

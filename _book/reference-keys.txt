@@ -9,3 +9,5 @@ descriptive-statistics
 visualisering
 bivariat-analys
 krosstabler-två-kategorisk-variabler
+korrelationer-två-kontinuerlig-variabel
+jämförelsen-av-medelvärdet-kontinuerlig-beroende-varaibel-och-kategorisk-oberoends-variabel
